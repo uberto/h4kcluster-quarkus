@@ -5,7 +5,16 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.acme</groupId>
     <artifactId>h4kcluster-quarkus</artifactId>
+    <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>launcher</module>
+        <module>ui</module>
+        <module>countword-app</module>
+        <module>domain</module>
+        <module>adapter</module>
+        <module>sumnumbers-app</module>
+    </modules>
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
         <kotlin.version>1.3.72</kotlin.version>
