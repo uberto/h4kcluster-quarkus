@@ -1,4 +1,4 @@
-package com.ubertob.sn10pc
+package com.ubertob.h4kcluster
 
 import org.http4k.core.Request
 import org.http4k.core.Response
