@@ -1,5 +1,6 @@
 package com.ubertob.h4kcluster.sumnumber
 
+import com.ubertob.h4kcluster.domain.SumNumbersHub
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
@@ -9,7 +10,6 @@ import org.http4k.core.Status.Companion.OK
 import org.http4k.routing.bind
 import org.http4k.routing.path
 import org.http4k.routing.routes
-import com.ubertob.h4kcluster.domain.SumNumbersHub
 
 class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler{
 
@@ -18,10 +18,12 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler{
                         req.path("a")
                                 ?.let { a -> req.path("b")
                                         ?.let { b ->
-                                            Response(OK).body(hub.sum(a, b))
+                                            val tot = hub.sum(a, b)
+                                            val page = "the sum is eq $tot"
+                                            Response(OK).body(page)
                                         }
                                 }
-                                ?: Response(NOT_FOUND)
+                                ?: Response(NOT_FOUND).body("!!!")
                     },
                     "/info" bind GET to { _: Request -> Response(OK).body("Bye from SumNumberHandler") }
             )
