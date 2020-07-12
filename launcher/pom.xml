@@ -4,12 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>h4kcluster-quarkus</artifactId>
-        <groupId>org.acme</groupId>
+        <groupId>com.ubertob.h4kcluster</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>launcher</artifactId>
+
+    <dependencies>
+
+
+
+        <dependency>
+            <groupId>com.ubertob.h4kcluster</groupId>
+            <artifactId>sumnumbers-app</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

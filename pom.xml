@@ -3,17 +3,17 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.acme</groupId>
+    <groupId>com.ubertob.h4kcluster</groupId>
     <artifactId>h4kcluster-quarkus</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>launcher</module>
-        <module>ui</module>
-        <module>countword-app</module>
         <module>domain</module>
         <module>adapter</module>
+        <module>countword-app</module>
         <module>sumnumbers-app</module>
+        <module>ui</module>
+        <module>launcher</module>
     </modules>
     <properties>
         <compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -138,14 +138,6 @@
                 <configuration>
                     <javaParameters>true</javaParameters>
                     <jvmTarget>11</jvmTarget>
-<!--                    <compilerPlugins>-->
-<!--                        <plugin>all-open</plugin>-->
-<!--                    </compilerPlugins>-->
-<!--                    <pluginOptions>-->
-<!--                        <option>all-open:annotation=javax.ws.rs.Path</option>-->
-<!--                        <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>-->
-<!--                        <option>all-open:annotation=io.quarkus.test.junit.QuarkusTest</option>-->
-<!--                    </pluginOptions>-->
                 </configuration>
             </plugin>
         </plugins>
