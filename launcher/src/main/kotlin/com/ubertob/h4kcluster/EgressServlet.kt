@@ -1,7 +1,7 @@
 package com.ubertob.h4kcluster
 
 import com.ubertob.h4kcluster.domain.SumNumbersHub
-import com.ubertob.h4kcluster.sumnumber.SumNumberHandler
+import com.ubertob.h4kcluster.sumnumbers.SumNumberHandler
 import org.http4k.core.Request
 import org.http4k.core.Response
 import org.http4k.core.Status.Companion.OK
