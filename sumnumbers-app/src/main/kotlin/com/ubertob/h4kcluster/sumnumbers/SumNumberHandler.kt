@@ -11,22 +11,27 @@ import org.http4k.routing.bind
 import org.http4k.routing.path
 import org.http4k.routing.routes
 
-class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler{
+class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
 
     val routes = routes(
-                    "/sum/{a}/{b}" bind GET to { req: Request ->
-                        req.path("a")
-                                ?.let { a -> req.path("b")
-                                        ?.let { b ->
-                                            val tot = hub.sum(a, b)
-                                            val page = "the sum is equal == $tot"
-                                            Response(OK).body(page)
-                                        }
-                                }
-                                ?: Response(NOT_FOUND).body("!!!")
-                    },
-                    "/info" bind GET to { _: Request -> Response(OK).body("Bye from SumNumberHandler") }
-            )
+            "/sum/{a}/{b}" bind GET to { req: Request ->
+                req.path("a")
+                        ?.let { a ->
+                            req.path("b")
+                                    ?.let { b ->
+                                        val tot = hub.sum(a, b)
+                                        val page = "the sum is equal to $tot"
+                                        Response(OK).body(page)
+                                    }
+                        }
+                        ?: Response(NOT_FOUND).body("!!!")
+            },
+            "/info" bind GET to { _: Request -> Response(OK).body("SumNumberHandler info 2") },
+            "/bye" bind GET to { _: Request ->
+                System.exit(0)
+                Response(OK).body("SumNumberHandler bye")
+            }
+    )
 
     override fun invoke(request: Request): Response = routes(request)
 
