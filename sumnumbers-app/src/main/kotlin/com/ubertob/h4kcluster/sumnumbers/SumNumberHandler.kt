@@ -26,7 +26,7 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
                         }
                         ?: Response(NOT_FOUND).body("!!!")
             },
-            "/info" bind GET to { _: Request -> Response(OK).body("SumNumberHandler info 2") },
+            "/info" bind GET to { _: Request -> Response(OK).body("SumNumberHandler info") },
             "/bye" bind GET to { _: Request ->
                 System.exit(0)
                 Response(OK).body("SumNumberHandler bye")
