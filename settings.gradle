@@ -1,0 +1,18 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+      id 'io.quarkus' version "${quarkusPluginVersion}"
+    }
+}
+rootProject.name='h4kcluster-quarkus'
+
+include 'domain'
+include 'adapter'
+include 'countword-app'
+include 'sumnumbers-app'
+include 'ui'
+include 'launcher'
