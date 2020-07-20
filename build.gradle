@@ -10,13 +10,12 @@ repositories {
      jcenter()
 }
 
-
-
 dependencies {
     implementation 'io.quarkus:quarkus-undertow'
     implementation 'io.quarkus:quarkus-kotlin'
-    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-resteasy-jsonb'
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy'
 
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
@@ -26,14 +25,7 @@ dependencies {
 subprojects {
     group 'com.ubertob.h4kcluster'
     version = '1.0'
-
-    sourceSets {
-        main.kotlin.srcDirs += 'src/main/kotlin'
-    }
 }
-
-
-
 
 allprojects {
     repositories {
@@ -44,23 +36,21 @@ allprojects {
     wrapper {
         gradleVersion = "6.3"
     }
-
-
 }
 
-//compileJava {
-//    options.encoding = 'UTF-8'
-//    options.compilerArgs << '-parameters'
-//}
-//
-//compileTestJava {
-//    options.encoding = 'UTF-8'
-//}
-//
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_11
-//    targetCompatibility = JavaVersion.VERSION_11
-//}
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
 
 test {
     systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
