@@ -1,5 +1,6 @@
 package com.ubertob.h4kcluster.sumnumbers
 
+import com.ubertob.h4kcluster.adapter.htmlResultPage
 import com.ubertob.h4kcluster.domain.SumNumbersHub
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
@@ -20,7 +21,7 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
                             req.path("b")
                                     ?.let { b ->
                                         val tot = hub.sum(a, b)
-                                        val page = "the sum is equal to $tot"
+                                        val page = htmlResultPage(tot)
                                         Response(OK).body(page)
                                     }
                         }

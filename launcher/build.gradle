@@ -1,9 +1,14 @@
 plugins {
-    id 'io.quarkus'
     id 'org.jetbrains.kotlin.jvm'
+    id 'io.quarkus'
 }
 
+
 dependencies {
+    implementation 'io.quarkus:quarkus-kotlin'
+    implementation 'io.quarkus:quarkus-undertow'
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     implementation "org.http4k:http4k-core:${http4kVersion}"
@@ -16,4 +21,18 @@ dependencies {
 
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
+}
+
+tasks {
+
+    quarkus {
+        setOutputDirectory("$projectDir/build/classes/kotlin/main")
+    }
+
+    quarkusDev {
+        setSourceDir("$projectDir/src/main/kotlin")
+    }
+    sourceSets {
+        main.kotlin.srcDirs += 'src/main/kotlin'
+    }
 }
