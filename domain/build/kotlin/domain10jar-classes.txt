@@ -1,0 +1,1 @@
+/home/ubertobarbini/svi/kotlin/h4kcluster-quarkus/domain/build/classes/kotlin/main/com/ubertob/h4kcluster/domain/CountWordHub.class:/home/ubertobarbini/svi/kotlin/h4kcluster-quarkus/domain/build/classes/kotlin/main/com/ubertob/h4kcluster/domain/SumNumbersHub.class
