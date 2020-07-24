@@ -1,6 +1,5 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm'
-    id 'io.quarkus'
 }
 
 
@@ -14,12 +13,4 @@ dependencies {
 
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
-}
-
-quarkus {
-    setOutputDirectory("$projectDir/build/classes/kotlin/main")
-}
-
-quarkusDev {
-    setSourceDir("$projectDir/src/main/kotlin")
 }

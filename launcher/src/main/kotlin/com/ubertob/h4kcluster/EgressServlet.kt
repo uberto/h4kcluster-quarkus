@@ -1,5 +1,7 @@
 package com.ubertob.h4kcluster
 
+import com.ubertob.h4kcluster.countword.CountWordHandler
+import com.ubertob.h4kcluster.domain.CountWordHub
 import com.ubertob.h4kcluster.domain.SumNumbersHub
 import com.ubertob.h4kcluster.sumnumbers.SumNumberHandler
 import org.http4k.core.Request
@@ -11,15 +13,37 @@ import javax.servlet.annotation.WebServlet
 
 
 @WebServlet("/")
-open class RestServlet: Servlet by HttpHandlerServlet(
+open class RestServlet : Servlet by HttpHandlerServlet(
         //here should go the egress UI
-        SumNumberHandler(SumNumbersHub())
-//        MyHandler()
+//        com.ubertob.h4kcluster.countword.SumNumberHandler(SumNumbersHub())
+        LocalAppsHandler()
 
 )
 
-class MyHandler : (Request) -> Response {
+class LocalAppsHandler : (Request) -> Response {
+
+    val apps = startAll()
+
+    private fun startAll(): List<Application> {
+
+        return listOf(
+                Application("cw", CountWordHandler(CountWordHub())),
+                Application("sn", SumNumberHandler(SumNumbersHub()))
+        )
+
+    }
+
     override fun invoke(request: Request): Response {
-        return Response(OK).body("<html><body><h1>Hello!!!!!!!</h1></body></html>")
+
+
+
+        val hostname = request.header("HOST")?.substringBefore('.').orEmpty()
+
+        val app = apps.firstOrNull { it.name == hostname }
+
+        return app?.run { handler(request) }
+                ?: Response(OK).body("<html><body><h1>Hello this is the launcher!</h1> <p>$hostname</p><p>$request</p></body></html>")
     }
 }
+
+

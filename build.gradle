@@ -28,15 +28,15 @@ subprojects {
     group 'com.ubertob.h4kcluster'
     version = '1.0'
 
-    def pd = "" + it.projectDir
-    println("subprj dir " + pd)
-    quarkus {
-        setOutputDirectory(pd + "/build/classes/kotlin/main")
-    }
-
-    quarkusDev {
-        setSourceDir(pd + "/src/main/kotlin")
-    }
+//    def pd = "" + it.projectDir
+//    println("subprj dir " + pd)
+//    quarkus {
+//        setOutputDirectory(pd + "/build/classes/kotlin/main")
+//    }
+//
+//    quarkusDev {
+//        setSourceDir(pd + "/src/main/kotlin")
+//    }
 
     java {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -54,16 +54,16 @@ subprojects {
 }
 
 
-tasks {
-    compileJava {
-        options.encoding = 'UTF-8'
-        options.compilerArgs << '-parameters'
-    }
-
-    quarkus {
-        setOutputDirectory("/home/ubertobarbini/svi/kotlin/h4kcluster-quarkus/launcher/build/classes/kotlin/main")
-    }
-}
+//tasks {
+//    compileJava {
+//        options.encoding = 'UTF-8'
+//        options.compilerArgs << '-parameters'
+//    }
+//
+//    quarkus {
+//        setOutputDirectory("/home/ubertobarbini/svi/kotlin/h4kcluster-quarkus/launcher/build/classes/kotlin/main")
+//    }
+//}
 
 allprojects {
     repositories {

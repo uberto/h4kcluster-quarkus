@@ -33,7 +33,7 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
                 Response(OK).body("SumNumberHandler bye")
             },
             "/" bind GET to { _: Request ->
-                 Response(OK).body("<html><body><h1>Hello World! All it's working fine!</h1></body></html>")
+                 Response(OK).body("<html><body><h1>Hello World!  All it's working fine!</h1></body></html>")
             }
     )
 
