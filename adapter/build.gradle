@@ -3,10 +3,6 @@ plugins {
 }
 
 dependencies {
-    implementation 'io.quarkus:quarkus-kotlin'
-    implementation 'io.quarkus:quarkus-undertow'
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation 'io.quarkus:quarkus-resteasy'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
     implementation "org.http4k:http4k-core:${http4kVersion}"

@@ -11,20 +11,6 @@ repositories {
 }
 
 
-
-dependencies {
-    implementation 'io.quarkus:quarkus-undertow'
-    implementation 'io.quarkus:quarkus-kotlin'
-    implementation 'io.quarkus:quarkus-resteasy'
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-
-    testImplementation 'io.quarkus:quarkus-junit5'
-    testImplementation 'io.rest-assured:rest-assured'
-}
-
-
-
-
 subprojects {
     group 'com.ubertob.h4kcluster'
     version = '1.0'
