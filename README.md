@@ -1,11 +1,15 @@
 # Http4k Cluster on Quarkus
 
 
+first check that everything is ok with
+```
+./gradlew clean build
+```
 
-start dev mode with
+then you can start dev mode with
 
 ```
-./mvnw -f launcher quarkus:dev
+./gradlew launcher:quarkusDev
 ```
 
 ## Creating a native executable
@@ -20,7 +24,7 @@ You can then execute your native executable with: `./target/xxxx-runner`
 
 to produce a flamegraph of the start up times in dev mode you can start it with:
 ```
-./mvnw compile quarkus:dev -Djvm.args="-agentpath:/path/to/async-profiler/build/libasyncProfiler.so=start,event=cpu,file=/tmp/startup-cpu-profile.svg,interval=1000000,width=1600,simple"
+./gradlew build launcher:quarkusDev -Djvm.args="-agentpath:/path/to/async-profiler/build/libasyncProfiler.so=start,event=cpu,file=/tmp/startup-cpu-profile.svg,interval=1000000,width=1600,simple"
 ```
 
 See
