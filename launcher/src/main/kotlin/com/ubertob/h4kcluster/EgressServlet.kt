@@ -27,19 +27,19 @@ class LocalAppsHandler : (Request) -> Response {
     private fun startAll(): List<Application> {
 
         return listOf(
-                Application("cw", CountWordHandler(CountWordHub())),
-                Application("sn", SumNumberHandler(SumNumbersHub()))
+                Application("wc", "words counter (/count)", CountWordHandler(CountWordHub())),
+                Application("sn",  "sum numbers (/sum/a/b)", SumNumberHandler(SumNumbersHub()))
         )
 
     }
 
     override fun invoke(request: Request): Response {
 
-
-
         val hostname = request.header("HOST")?.substringBefore('.').orEmpty()
 
         val app = apps.firstOrNull { it.name == hostname }
+
+        println("application ${app?.description?:"launcher"}")
 
         return app?.run { handler(request) }
                 ?: Response(OK).body("<html><body><h1>Hello this is the launcher!</h1> <p>$hostname</p><p>$request</p></body></html>")
