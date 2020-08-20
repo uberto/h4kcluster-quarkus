@@ -4,35 +4,22 @@ plugins {
 }
 
 
-dependencies {
-    implementation 'io.quarkus:quarkus-kotlin'
-    implementation 'io.quarkus:quarkus-undertow'
-    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
-    implementation "org.http4k:http4k-core:${http4kVersion}"
-    implementation "org.http4k:http4k-server-undertow:${http4kVersion}"
+dependencies {
 
     implementation project(":domain")
     implementation project(":adapter")
     implementation project(":countword-app")
     implementation project(":sumnumbers-app")
 
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
-    testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
+    implementation "org.http4k:http4k-core:${http4kVersion}"
+    implementation "io.quarkus:quarkus-undertow:${quarkusPlatformVersion}"
 }
 
-tasks {
+compileKotlin {
+    kotlinOptions.javaParameters = true
+}
 
-    quarkus {
-        setOutputDirectory("$projectDir/build/classes/kotlin/main")
-    }
-
-    quarkusDev {
-        setSourceDir("$projectDir/src/main/kotlin")
-        workingDir = rootProject.projectDir
-    }
-    sourceSets {
-        main.kotlin.srcDirs += 'src/main/kotlin'
-    }
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
 }

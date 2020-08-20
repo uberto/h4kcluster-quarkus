@@ -1,51 +1,21 @@
 plugins {
     id 'java'
-//    id 'io.quarkus'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
 }
 
 repositories {
-     mavenLocal()
-     mavenCentral()
-     jcenter()
+    mavenLocal()
+    mavenCentral()
+    jcenter()
 }
 
-
-subprojects {
+allprojects {
     group 'com.ubertob.h4kcluster'
     version = '1.0'
 
-    def pd = "" + it.projectDir
-
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    apply {
+        plugin 'org.jetbrains.kotlin.jvm'
     }
-
-    compileKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-        kotlinOptions.javaParameters = true
-    }
-
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_11
-    }
-//    quarkus {
-//        setOutputDirectory(pd +"/build/classes/kotlin/main")
-//    }
-//    quarkusDev {
-//        setSourceDir(pd + "/src/main/kotlin")
-//        workingDir = rootProject.projectDir
-//    }
-//
-//    sourceSets {
-//        main.kotlin.srcDirs += 'src/main/kotlin'
-//    }
-}
-
-
-
-allprojects {
 
     repositories {
         jcenter()
@@ -53,26 +23,25 @@ allprojects {
     }
 
     wrapper {
-        gradleVersion = "6.3"
+        gradleVersion = "6.5"
     }
 
-}
+    dependencies {
+        implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+        implementation 'io.quarkus:quarkus-kotlin'
+        testImplementation 'io.quarkus:quarkus-junit5'
+
+        testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
+    }
 
 
-//compileJava {
-//    options.encoding = 'UTF-8'
-//    options.compilerArgs << '-parameters'
-//}
-//
-//compileTestJava {
-//    options.encoding = 'UTF-8'
-//}
-//
-//java {
-//    sourceCompatibility = JavaVersion.VERSION_11
-//    targetCompatibility = JavaVersion.VERSION_11
-//}
+    compileKotlin {
+        kotlinOptions.javaParameters = true
+    }
 
-test {
-    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    test {
+        systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+    }
 }
