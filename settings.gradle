@@ -6,7 +6,6 @@ pluginManagement {
     }
     plugins {
       id 'io.quarkus' version "${quarkusPluginVersion}"
-//      id 'io.quarkus' version "${quarkusPluginVersion}"
     }
 }
 rootProject.name='h4kcluster-quarkus'
