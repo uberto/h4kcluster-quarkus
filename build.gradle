@@ -9,33 +9,30 @@ repositories {
     jcenter()
 }
 
-allprojects {
+wrapper {
+    gradleVersion = "6.5"
+}
+
+subprojects {
     group 'com.ubertob.h4kcluster'
     version = '1.0'
-
-    apply {
-        plugin 'org.jetbrains.kotlin.jvm'
-    }
 
     repositories {
         jcenter()
         mavenCentral()
     }
 
-    wrapper {
-        gradleVersion = "6.5"
+
+    apply {
+        plugin 'org.jetbrains.kotlin.jvm'
     }
 
     dependencies {
-        implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
         implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-        implementation 'io.quarkus:quarkus-kotlin'
-        testImplementation 'io.quarkus:quarkus-junit5'
 
         testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
         testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
     }
-
 
     compileKotlin {
         kotlinOptions.javaParameters = true

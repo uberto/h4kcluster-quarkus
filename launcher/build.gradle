@@ -4,7 +4,6 @@ plugins {
 }
 
 
-
 dependencies {
 
     implementation project(":domain")
@@ -12,8 +11,13 @@ dependencies {
     implementation project(":countword-app")
     implementation project(":sumnumbers-app")
 
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-kotlin'
+    testImplementation 'io.quarkus:quarkus-junit5'
+
     implementation "org.http4k:http4k-core:${http4kVersion}"
     implementation "io.quarkus:quarkus-undertow:${quarkusPlatformVersion}"
+
 }
 
 compileKotlin {
