@@ -1,13 +1,26 @@
 package com.ubertob.h4kcluster.ui
 
 import org.http4k.core.HttpHandler
+import org.http4k.core.Method
 import org.http4k.core.Request
 import org.http4k.core.Response
 import org.http4k.core.Status.Companion.OK
+import org.http4k.routing.bind
+import org.http4k.routing.routes
 
 
 class UiHandler() : HttpHandler {
-    override fun invoke(req: Request): Response = Response(OK).body(landingPageHtml())
+
+    val routes = routes(
+            "/" bind Method.GET to { _ ->
+                Response(OK).body(landingPageHtml())
+            },
+            "/submit" bind Method.POST to {
+                Response(OK).body("arrived: ${it}")
+            }
+    )
+
+    override fun invoke(req: Request): Response = routes(req)
 
 }
 
@@ -28,7 +41,7 @@ private fun landingPageHtml(): String = """
 
 <div class="container">
     <h1>Hello to the H4k Cluster example!</h1>
-<form>    
+<form action="/submit" method="post">    
       <div class="form-group">
         <label for="textarea">Insert a text here and then click the button to count the number of words</label>
         <textarea class="form-control" id="textarea" rows="10"></textarea>
