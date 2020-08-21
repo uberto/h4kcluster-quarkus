@@ -1,5 +1,6 @@
 package com.ubertob.h4kcluster.ui
 
+import com.ubertob.h4kcluster.domain.UiHub
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method
 import org.http4k.core.Request
@@ -12,7 +13,7 @@ import org.http4k.routing.bind
 import org.http4k.routing.routes
 
 
-class UiHandler() : HttpHandler {
+class UiHandler(hub: UiHub) : HttpHandler {
 
     val routes = routes(
             "/" bind Method.GET to { _ ->
@@ -22,7 +23,7 @@ class UiHandler() : HttpHandler {
 
                 val text = req.form("words").orEmpty()
 
-                val wordNo = text.split(" ").size
+                val wordNo = hub.countWords(text)
                 Response(OK).body(showResultHtml(wordNo))
             }
     )

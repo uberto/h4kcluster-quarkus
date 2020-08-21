@@ -20,3 +20,5 @@ class CountWordHandler(val hub: CountWordHub) : HttpHandler {
     override fun invoke(request: Request): Response = routes(request)
 
 }
+
+
