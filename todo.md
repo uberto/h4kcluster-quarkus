@@ -1,5 +1,7 @@
 ui, sn, wc should all use domain and adapter
 
+replace enum with interface+register for discovery
+
 add http client preloaded with other apps url/port
 
 ui app should have a html form where use can put a text

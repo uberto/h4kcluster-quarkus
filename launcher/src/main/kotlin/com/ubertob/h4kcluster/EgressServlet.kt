@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet
 @WebServlet("/")
 open class RestServlet : Servlet by HttpHandlerServlet(
         //here should go the egress UI
-//        com.ubertob.h4kcluster.countword.SumNumberHandler(SumNumbersHub())
         LocalAppsHandler()
 
 )
