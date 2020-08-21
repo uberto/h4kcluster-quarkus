@@ -9,6 +9,8 @@ dependencies {
     implementation "org.http4k:http4k-core:${http4kVersion}"
 
     implementation project(":domain")
+    implementation project(":adapter")
+
 
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"

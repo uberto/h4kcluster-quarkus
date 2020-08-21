@@ -1,11 +1,11 @@
 package com.ubertob.h4kcluster
 
-import com.ubertob.h4kcluster.MyClusterApp.sn
-import com.ubertob.h4kcluster.MyClusterApp.wc
+import com.ubertob.h4kcluster.MyClusterApp.*
 import com.ubertob.h4kcluster.countword.CountWordHandler
 import com.ubertob.h4kcluster.domain.CountWordHub
 import com.ubertob.h4kcluster.domain.SumNumbersHub
 import com.ubertob.h4kcluster.sumnumbers.SumNumberHandler
+import com.ubertob.h4kcluster.ui.UiHandler
 import org.http4k.core.Request
 import org.http4k.core.Response
 import org.http4k.core.Status
@@ -19,7 +19,8 @@ class LocalAppsHandler : (Request) -> Response {
 
         return listOf(
                 MyApplication(wc, "words counter (/count)", CountWordHandler(CountWordHub())),
-                MyApplication(sn, "sum numbers (/sum/a/b)", SumNumberHandler(SumNumbersHub()))
+                MyApplication(sn, "sum numbers (/sum/a/b)", SumNumberHandler(SumNumbersHub())),
+                MyApplication(ui, ui.hostname, UiHandler())
         )
 
     }

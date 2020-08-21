@@ -10,6 +10,7 @@ dependencies {
     implementation project(":adapter")
     implementation project(":countword-app")
     implementation project(":sumnumbers-app")
+    implementation project(":ui")
 
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-kotlin'
