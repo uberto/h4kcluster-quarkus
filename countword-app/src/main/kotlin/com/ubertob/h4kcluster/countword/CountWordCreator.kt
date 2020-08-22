@@ -8,9 +8,13 @@ import com.ubertob.h4kcluster.domain.CountWordHub
 object CountWordCreator: (ServiceDiscovery) -> Application {
     
     override fun invoke(sd: ServiceDiscovery): Application {
+
+
         val hub = CountWordHub()
-        
-        return Application(WordCounterId, "words counter (/count)", CountWordHandler(hub))
+
+        val handler = CountWordHandler(hub)
+
+        return Application(WordCounterId, "words counter (/count)", handler)
     }
 
 }

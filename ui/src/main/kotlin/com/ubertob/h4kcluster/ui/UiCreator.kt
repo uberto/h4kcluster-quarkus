@@ -11,6 +11,7 @@ object UiCreator: (ServiceDiscovery) -> Application {
 
     override fun invoke(sd: ServiceDiscovery): Application {
 
+        val wcClient = sd.provideHttpClient(WordCounterId)
         val hub = UiHub(
                 { it.split(" ").size },
                 { a, b -> a+b }

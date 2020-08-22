@@ -1,6 +1,7 @@
 package com.ubertob.h4kcluster
 
 import com.ubertob.h4kcluster.adapter.bootstrap.Application
+import com.ubertob.h4kcluster.adapter.bootstrap.InProcessServiceDiscovery
 import com.ubertob.h4kcluster.adapter.bootstrap.ServiceDiscovery
 import com.ubertob.h4kcluster.countword.CountWordCreator
 import com.ubertob.h4kcluster.sumnumbers.SumSumberCreator
@@ -12,25 +13,21 @@ import org.http4k.core.Status
 
 class LocalAppsHandler : (Request) -> Response {
 
-    val apps = startAll()
+    val serviceDiscovery = InProcessServiceDiscovery()
 
-    private fun startAll(): List<Application> {
-
-        val serviceDiscovery = ServiceDiscovery()
-
-        return listOf(
-                CountWordCreator(serviceDiscovery),
-                SumSumberCreator(serviceDiscovery),
-                UiCreator(serviceDiscovery)
-        )
-
+    init {
+         listOf(
+                CountWordCreator,
+                SumSumberCreator,
+                UiCreator
+        ).forEach { serviceDiscovery.register(it) }
     }
 
     override fun invoke(request: Request): Response {
 
         val hostname = request.header("HOST")?.substringBefore('.').orEmpty()
 
-        val app = apps.firstOrNull { it.id.hostname == hostname }
+        val app = serviceDiscovery.findByHostname(hostname)
 
         println("application ${app?.description ?: "launcher"}")
 
