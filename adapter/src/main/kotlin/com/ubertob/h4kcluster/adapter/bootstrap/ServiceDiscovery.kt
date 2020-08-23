@@ -6,7 +6,7 @@ import org.http4k.core.Status
 import java.util.concurrent.atomic.AtomicReference
 
 interface ServiceDiscovery {
-    fun provideHttpClient(id: ApplicationId): HttpHandler?
+    fun provideHttpClient(id: ApplicationId): HttpHandler
     fun register(creator: (ServiceDiscovery) -> Application)
 }
 

@@ -21,11 +21,10 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
                             req.path("b")
                                     ?.let { b ->
                                         val tot = hub.sum(a, b)
-                                        val page = htmlResultPage(tot)
-                                        Response(OK).body(page)
+                                        Response(OK).body(tot.toString())
                                     }
                         }
-                        ?: Response(NOT_FOUND).body("!!!")
+                        ?: Response(NOT_FOUND).body("wrong path")
             },
             "/info" bind GET to { _: Request -> Response(OK).body("SumNumberHandler info") },
             "/bye" bind GET to { _: Request ->

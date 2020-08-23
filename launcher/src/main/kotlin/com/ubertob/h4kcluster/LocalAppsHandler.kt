@@ -29,7 +29,7 @@ class LocalAppsHandler : (Request) -> Response {
 
         val app = serviceDiscovery.findByHostname(hostname)
 
-        println("application ${app?.description ?: "launcher"}")
+        println("incoming request for ${app?.description ?: "launcher"}")
 
         return app?.run { handler(request) }
                 ?: Response(Status.OK).body("<html><body><h1>Hello this is the launcher!</h1> <p>$hostname</p><p>$request</p></body></html>")

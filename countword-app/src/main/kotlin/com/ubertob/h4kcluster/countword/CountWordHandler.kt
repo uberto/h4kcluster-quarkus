@@ -1,5 +1,6 @@
 package com.ubertob.h4kcluster.countword
 
+import com.ubertob.h4kcluster.adapter.wordcounter.WordCounterRoutes
 import com.ubertob.h4kcluster.domain.CountWordHub
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
@@ -12,9 +13,9 @@ import org.http4k.routing.routes
 class CountWordHandler(val hub: CountWordHub) : HttpHandler {
 
     val routes = routes(
-            "/count" bind GET to { req: Request ->
-                Response(OK).body("the number of words is 42")
-            }
+        WordCounterRoutes.count bind GET to { req: Request ->
+            Response(OK).body(hub.countWords(req.bodyString()).toString())
+        }
     )
 
     override fun invoke(request: Request): Response = routes(request)
