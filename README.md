@@ -12,11 +12,17 @@ then you can start dev mode with
 ./gradlew launcher:quarkusDev
 ```
 
+Then you can see the ui (for example) at
+
+```
+http://localhost:8080/
+```
+
 ## Creating a native executable
 
-You can create a native executable using: `./mvnw package -Pnative`.
+If you don't have GraalVM installed and GRAALVM_HOME configured, you can create a native executable using: `./gradlew build -Dquarkus.package.type=native`.
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
+Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true`.
 
 You can then execute your native executable with: `./target/xxxx-runner`
 

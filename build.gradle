@@ -28,7 +28,7 @@ subprojects {
     }
 
     dependencies {
-        implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
 
         testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
         testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"

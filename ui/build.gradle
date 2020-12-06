@@ -4,11 +4,10 @@ plugins {
 
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
 
     implementation "org.http4k:http4k-core:${http4kVersion}"
-    implementation "org.http4k:http4k-server-jetty:${http4kVersion}"
-
+    implementation "org.http4k:http4k-server-undertow:${http4kVersion}"
 
     implementation project(":domain")
     implementation project(":adapter")

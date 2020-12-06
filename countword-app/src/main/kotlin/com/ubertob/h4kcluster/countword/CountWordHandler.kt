@@ -14,7 +14,8 @@ class CountWordHandler(val hub: CountWordHub) : HttpHandler {
 
     val routes = routes(
         WordCounterRoutes.count bind GET to { req: Request ->
-            Response(OK).body(hub.countWords(req.bodyString()).toString())
+            val resp = hub.countWords(req.bodyString()).toString()
+            Response(OK).body(resp)
         }
     )
 
@@ -22,4 +23,5 @@ class CountWordHandler(val hub: CountWordHub) : HttpHandler {
 
 }
 
-
+//example
+//curl -i -X GET -d 'The quick brown fox jumps over the lazy dog' http://localhost:8082/count
