@@ -24,7 +24,9 @@ If you don't have GraalVM installed and GRAALVM_HOME configured, you can create 
 
 Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true`.
 
-You can then execute your native executable with: `./target/xxxx-runner`
+You can then execute your native executable with: `./build/xxxx-runner`
+
+Note that you need to add Quarkus as dependency of any project that you want to be
 
 ## debug startup time
 
