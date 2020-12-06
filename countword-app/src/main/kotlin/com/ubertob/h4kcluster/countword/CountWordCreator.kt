@@ -9,7 +9,6 @@ object CountWordCreator: (ServiceDiscovery) -> Application {
     
     override fun invoke(sd: ServiceDiscovery): Application {
 
-
         val hub = CountWordHub()
 
         val handler = CountWordHandler(hub)

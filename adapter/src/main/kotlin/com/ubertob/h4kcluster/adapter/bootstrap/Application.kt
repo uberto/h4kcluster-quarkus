@@ -10,9 +10,9 @@ data class Application(
         val id: ApplicationId,
         val description: String,
         val handler: HttpHandler
-): AutoCloseable{
+) : AutoCloseable {
     override fun close() {
-        //todo
+        //add logic for closing application here
     }
 
 }

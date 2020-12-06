@@ -11,33 +11,23 @@ interface ServiceDiscovery {
 }
 
 class InProcessServiceDiscovery : ServiceDiscovery {
-    private val applications: AtomicReference< Map<ApplicationId, Application>> = AtomicReference( emptyMap())
+    private val applications: AtomicReference<Map<ApplicationId, Application>> = AtomicReference(emptyMap())
 
     override fun provideHttpClient(id: ApplicationId): HttpHandler {
-        return applications.get()[id]?.handler ?: {Response(Status.BAD_GATEWAY).body("application unknown $id")}
+        return applications.get()[id]?.handler ?: { Response(Status.BAD_GATEWAY).body("application unknown $id") }
     }
 
     override fun register(creator: (ServiceDiscovery) -> Application) {
-        applications.getAndUpdate { it + creator(this).toMapEntry()  }
+        applications.getAndUpdate { it + creator(this).toMapEntry() }
     }
 
     fun findByHostname(hostname: String): Application? =
-        applications.get().values.firstOrNull { it.id.hostname == hostname }
+            applications.get().values.firstOrNull { it.id.hostname == hostname }
 
 }
 
 private fun Application.toMapEntry(): Pair<ApplicationId, Application> =
-        this.id to this
+        id to this
 
 
-class DeployablesServiceDiscover : ServiceDiscovery {
-    override fun provideHttpClient(id: ApplicationId): HttpHandler {
-        TODO("Not yet implemented")
-        //      return HttpOkClient().setBaseUri(calculateUri(id))
-    }
 
-    override fun register(creator: (ServiceDiscovery) -> Application) {
-        TODO("Not yet implemented")
-    }
-
-}
