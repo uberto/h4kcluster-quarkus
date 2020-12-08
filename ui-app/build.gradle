@@ -12,7 +12,6 @@ dependencies {
     implementation project(":domain")
     implementation project(":adapter")
 
-
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
 }

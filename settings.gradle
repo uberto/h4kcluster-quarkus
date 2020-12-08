@@ -12,7 +12,7 @@ rootProject.name='h4kcluster-quarkus'
 
 include 'domain'
 include 'adapter'
-include 'countword-app'
+include 'countwords-app'
 include 'sumnumbers-app'
 include 'ui-app'
 include 'launcher'
