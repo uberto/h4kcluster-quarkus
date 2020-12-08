@@ -7,8 +7,8 @@ import javax.servlet.annotation.WebServlet
 
 @WebServlet("/")
 open class RestServlet : Servlet by HttpHandlerServlet(
-        //here should go the egress UI
-        LocalAppsHandler()
+      //here should go the egress UI
+      LocalAppsHandler()
 
 )
 

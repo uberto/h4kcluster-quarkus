@@ -13,20 +13,20 @@ import org.http4k.routing.routes
 
 class UiHandler(hub: UiHub) : HttpHandler {
 
-    val routes = routes(
-            "/" bind Method.GET to { _ ->
-                Response(OK).body(landingPageHtml())
-            },
-            "/submit" bind Method.POST to {req ->
+  val routes = routes(
+        "/" bind Method.GET to { _ ->
+          Response(OK).body(landingPageHtml())
+        },
+        "/submit" bind Method.POST to { req ->
 
-                val text = req.form("words").orEmpty()
+          val text = req.form("words").orEmpty()
 
-                val wordNo = hub.countWords(text)
-                Response(OK).body(showResultHtml(wordNo))
-            }
-    )
+          val wordNo = hub.countWords(text)
+          Response(OK).body(showResultHtml(wordNo))
+        }
+  )
 
-    override fun invoke(req: Request): Response = routes(req)
+  override fun invoke(req: Request): Response = routes(req)
 
 }
 

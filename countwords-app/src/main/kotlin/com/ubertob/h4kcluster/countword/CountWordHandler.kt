@@ -12,14 +12,14 @@ import org.http4k.routing.routes
 
 class CountWordHandler(val hub: CountWordHub) : HttpHandler {
 
-    val routes = routes(
+  val routes = routes(
         WordCounterRoutes.count bind GET to { req: Request ->
-            val resp = hub.countWords(req.bodyString()).toString()
-            Response(OK).body(resp)
+          val resp = hub.countWords(req.bodyString()).toString()
+          Response(OK).body(resp)
         }
-    )
+  )
 
-    override fun invoke(request: Request): Response = routes(request)
+  override fun invoke(request: Request): Response = routes(request)
 
 }
 

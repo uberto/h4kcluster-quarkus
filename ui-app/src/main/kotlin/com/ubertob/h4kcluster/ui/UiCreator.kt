@@ -11,13 +11,13 @@ import com.ubertob.h4kcluster.domain.UiHub
 
 object UiCreator : (ServiceDiscovery) -> Application {
 
-    override fun invoke(sd: ServiceDiscovery): Application {
+  override fun invoke(sd: ServiceDiscovery): Application {
 
-        val wcClient = WordCounterClient(sd.provideHttpClient(WordCounterId))
-        val snClient = SumNumbersClient(sd.provideHttpClient(SumNumbersId))
-        val hub = UiHub(wcClient, snClient)
+    val wcClient = WordCounterClient(sd.provideHttpClient(WordCounterId))
+    val snClient = SumNumbersClient(sd.provideHttpClient(SumNumbersId))
+    val hub = UiHub(wcClient, snClient)
 
-        return Application(UiId, "front-end", UiHandler(hub))
-    }
+    return Application(UiId, "front-end", UiHandler(hub))
+  }
 
 }
