@@ -12,33 +12,33 @@ import org.http4k.server.Undertow
 import org.http4k.server.asServer
 
 object DeployableServiceDiscover : ServiceDiscovery {
-    private val ports: Map<ApplicationId, Int> = //todo read port config from cloud configuration
-            mapOf(
-                    SumNumbersId to 8081,
-                    WordCounterId to 8082,
-                    UiId to 8083
-            )
+  private val ports: Map<ApplicationId, Int> = //todo read port config from cloud configuration
+        mapOf(
+              SumNumbersId to 8081,
+              WordCounterId to 8082,
+              UiId to 8083
+        )
 
-    override fun provideHttpClient(id: ApplicationId): HttpHandler {
-        val uri = calculateUri(id)
-        return ClientFilters.SetBaseUriFrom(uri)
-                .then(OkHttp())
-    }
+  override fun provideHttpClient(id: ApplicationId): HttpHandler {
+    val uri = calculateUri(id)
+    return ClientFilters.SetBaseUriFrom(uri)
+          .then(OkHttp())
+  }
 
-    private fun calculateUri(id: ApplicationId): Uri =
-            ports[id]?.let {
-                Uri.of("http://${id.hostname}.localhost:${it}") //todo, replace localhost with your cloud domain...
-            } ?: error("Application not registered: $id")
+  private fun calculateUri(id: ApplicationId): Uri =
+        ports[id]?.let {
+          Uri.of("http://${id.hostname}.localhost:${it}") //todo, replace localhost with your cloud domain...
+        } ?: error("Application not registered: $id")
 
 
-    override fun register(creator: (ServiceDiscovery) -> Application) {
-        //nothing to do
-    }
+  override fun register(creator: (ServiceDiscovery) -> Application) {
+    //nothing to do
+  }
 
-    fun startServer(creator: (ServiceDiscovery) -> Application) {
-        val app = creator(this)
-        val port = ports[app.id] ?: error("Application not registered: ${app.id}")
-        app.handler.asServer(Undertow(port)).start()
-    }
+  fun startServer(creator: (ServiceDiscovery) -> Application) {
+    val app = creator(this)
+    val port = ports[app.id] ?: error("Application not registered: ${app.id}")
+    app.handler.asServer(Undertow(port)).start()
+  }
 
 }

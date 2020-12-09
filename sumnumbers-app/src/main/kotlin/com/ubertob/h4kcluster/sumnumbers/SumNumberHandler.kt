@@ -5,7 +5,7 @@ import org.http4k.core.HttpHandler
 import org.http4k.core.Method.GET
 import org.http4k.core.Request
 import org.http4k.core.Response
-import org.http4k.core.Status.Companion.NOT_FOUND
+import org.http4k.core.Status.Companion.BAD_REQUEST
 import org.http4k.core.Status.Companion.OK
 import org.http4k.routing.bind
 import org.http4k.routing.path
@@ -15,23 +15,16 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
 
   val routes = routes(
         "/sum/{a}/{b}" bind GET to { req: Request ->
-          req.path("a")
-                ?.let { a ->
-                  req.path("b")
-                        ?.let { b ->
-                          val tot = hub.sum(a, b)
-                          Response(OK).body(tot.toString())
-                        }
-                }
-                ?: Response(NOT_FOUND).body("wrong path")
-        },
-        "/info" bind GET to { _: Request -> Response(OK).body("SumNumberHandler info") },
-        "/bye" bind GET to { _: Request ->
-          System.exit(0)
-          Response(OK).body("SumNumberHandler bye")
+          val a = req.path("a")
+          val b = req.path("b")
+          if (a != null && b != null) {
+            val tot = hub.sum(a, b)
+            Response(OK).body(tot.toString())
+          } else
+            Response(BAD_REQUEST).body("wrong request: ${req.uri}")
         },
         "/" bind GET to { _: Request ->
-          Response(OK).body("<html><body><h1>Hello World!  All it's working fine!</h1></body></html>")
+          Response(OK).body("<html><body><h1>This is SumNumbers</h1></body></html>")
         }
   )
 
