@@ -12,7 +12,7 @@ class InProcessServiceDiscovery : ServiceDiscovery {
     return applications.get()[id]?.handler ?: { Response(Status.BAD_GATEWAY).body("application unknown $id") }
   }
 
-  override fun register(creator: (ServiceDiscovery) -> Application) {
+  fun register(creator: (ServiceDiscovery) -> Application) {
     applications.getAndUpdate { it + creator(this).toMapEntry() }
   }
 

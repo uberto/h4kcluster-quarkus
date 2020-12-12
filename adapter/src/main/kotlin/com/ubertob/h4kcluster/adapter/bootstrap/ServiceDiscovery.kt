@@ -4,7 +4,6 @@ import org.http4k.core.HttpHandler
 
 interface ServiceDiscovery {
   fun provideHttpClient(id: ApplicationId): HttpHandler
-  fun register(creator: (ServiceDiscovery) -> Application)
 }
 
 

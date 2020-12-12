@@ -23,6 +23,7 @@ object DeployableServiceDiscover : ServiceDiscovery {
     val uri = calculateUri(id)
     return ClientFilters.SetBaseUriFrom(uri)
           .then(OkHttp())
+          .also { println("Connected ${id.hostname} on $uri") }
   }
 
   private fun calculateUri(id: ApplicationId): Uri =
@@ -31,14 +32,13 @@ object DeployableServiceDiscover : ServiceDiscovery {
         } ?: error("Application not registered: $id")
 
 
-  override fun register(creator: (ServiceDiscovery) -> Application) {
-    //nothing to do
-  }
-
   fun startServer(creator: (ServiceDiscovery) -> Application) {
     val app = creator(this)
     val port = ports[app.id] ?: error("Application not registered: ${app.id}")
-    app.handler.asServer(Undertow(port)).start()
+    app.handler
+          .asServer(Undertow(port))
+          .start()
+          .also { println("Started ${app.description} on $port") }
   }
 
 }
