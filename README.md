@@ -12,10 +12,16 @@ then you can start dev mode with
 ./gradlew launcher:quarkusDev
 ```
 
-Then you can see the ui (for example) at
+You can check that the launcher is running at
 
 ```
 http://localhost:8080/
+```
+
+Then you can see the ui microservice at
+
+```
+http://ui.localhost:8080/
 ```
 
 ## Creating a native executable
