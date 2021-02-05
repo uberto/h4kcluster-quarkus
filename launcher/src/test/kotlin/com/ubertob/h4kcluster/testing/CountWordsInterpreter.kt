@@ -5,9 +5,7 @@ import com.ubertob.pesticide.core.DomainInterpreter
 
 interface CountWordsInterpreter: DomainInterpreter<DdtProtocol> {
 
-    fun sendATextToBeCounted(text: String)
-
-    fun getTotalOfWords(): Int
+    fun getTotalOfWords(text: String): Int
 }
 
 val allInterpreters = setOf(

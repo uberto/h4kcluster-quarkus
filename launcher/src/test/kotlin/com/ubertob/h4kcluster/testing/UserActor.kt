@@ -1,17 +1,18 @@
 package com.ubertob.h4kcluster.testing
 
-import com.ubertob.pesticide.core.DdtActor
-import strikt.api.expectThat
-import strikt.assertions.isEqualTo
+import com.ubertob.pesticide.core.DdtActorWithContext
 
-data class UserActor(override val name: String) : DdtActor<CountWordsInterpreter>() {
-    fun `verify that the number of words is $`(expectedWords: Int) = step(expectedWords) {
-        val tow = getTotalOfWords()
-        expectThat(tow).isEqualTo(expectedWords)
+data class UserActor(override val name: String) : DdtActorWithContext<CountWordsInterpreter, String>() {
+
+    fun `verify that the number of words is $`(expectedWords: Int) = step(expectedWords) { ctx ->
+        val text = ctx.get()
+
+
+        TODO("finish me")
     }
 
-    fun `insert the text`(text: String) = step {
-        sendATextToBeCounted(text)
+    fun `can insert the text`(text: String) = step { ctx ->
+        ctx.store(text)
     }
 
 }

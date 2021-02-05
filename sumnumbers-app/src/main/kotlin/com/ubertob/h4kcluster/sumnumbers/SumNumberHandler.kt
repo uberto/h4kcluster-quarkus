@@ -18,7 +18,7 @@ class SumNumberHandler(val hub: SumNumbersHub) : HttpHandler {
           val a = req.path("a")
           val b = req.path("b")
           if (a != null && b != null) {
-            val tot = hub.sum(a, b)
+            val tot = hub.sum(a.toInt(), b.toInt())
             Response(OK).body(tot.toString())
           } else
             Response(BAD_REQUEST).body("wrong request: ${req.uri}")

@@ -51,16 +51,13 @@ class HttpWordCount(val host: String, val port: Int) : CountWordsInterpreter {
 
     fun countWordsRequest(text: String) = Request(Method.POST, uri("/submit")).form("words", text)
 
-    override fun sendATextToBeCounted(text: String) {
+    override fun getTotalOfWords(text: String): Int {
         val countWordsRequest = countWordsRequest(text)
         val resp = client(countWordsRequest)
 
         println(resp)
 
-    }
-
-    override fun getTotalOfWords(): Int {
-        TODO("Not yet implemented")
+        TODO("Not finished yet")
     }
 
 

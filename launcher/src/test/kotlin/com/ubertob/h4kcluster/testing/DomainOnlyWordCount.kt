@@ -1,5 +1,8 @@
 package com.ubertob.h4kcluster.testing
 
+import com.ubertob.h4kcluster.domain.CountWordHub
+import com.ubertob.h4kcluster.domain.SumNumbersHub
+import com.ubertob.h4kcluster.domain.UiHub
 import com.ubertob.pesticide.core.DdtProtocol
 import com.ubertob.pesticide.core.DomainOnly
 import com.ubertob.pesticide.core.DomainSetUp
@@ -13,14 +16,12 @@ class DomainOnlyWordCount: CountWordsInterpreter {
     override fun prepare(): DomainSetUp = Ready
 
 
+    private val wordCountHub = CountWordHub()
+    private val sumNumbersHub = SumNumbersHub()
+    private val uiHub = UiHub(wordCountHub::countWords, sumNumbersHub::sum)
 
-    override fun sendATextToBeCounted(text: String) {
-        TODO("Not yet implemented")
-    }
 
-    override fun getTotalOfWords(): Int {
-        TODO("Not yet implemented")
-    }
 
+    override fun getTotalOfWords(text: String) = TODO("finish me")
 
 }

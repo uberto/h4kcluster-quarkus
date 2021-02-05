@@ -18,7 +18,7 @@ class CountWordsDDT : DomainDrivenTest<CountWordsInterpreter>(allInterpreters) {
 
         val wilmaNovel = "It was a dark and stormy night"
         withoutSetting atRise play(
-            wilmaTheWriter.`insert the text`(wilmaNovel),
+            wilmaTheWriter.`can insert the text`(wilmaNovel),
             wilmaTheWriter.`verify that the number of words is $`(7)
         ).wip(LocalDate.of(2021, 3, 1), "Working on it!")
     }
