@@ -1,0 +1,2 @@
+add pesticide tests
+add auto count words as you type

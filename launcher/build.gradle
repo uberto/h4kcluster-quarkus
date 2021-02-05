@@ -14,10 +14,20 @@ dependencies {
 
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
     implementation 'io.quarkus:quarkus-kotlin'
-    testImplementation 'io.quarkus:quarkus-junit5'
 
     implementation "org.http4k:http4k-core:${http4kVersion}"
     implementation "io.quarkus:quarkus-undertow:${quarkusPlatformVersion}"
+
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation "com.ubertob.pesticide:pesticide-core:${pesticideVersion}"
+    testImplementation "org.http4k:http4k-core:${http4kVersion}"
+    testImplementation "org.http4k:http4k-server-undertow:${http4kVersion}"
+    testImplementation "org.http4k:http4k-server-jetty:${http4kVersion}"
+    testImplementation "org.http4k:http4k-client-apache:${http4kVersion}"
+    testImplementation "io.strikt:strikt-core:$striktVersion"
+
+
 
 }
 
