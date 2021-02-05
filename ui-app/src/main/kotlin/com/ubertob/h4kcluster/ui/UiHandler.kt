@@ -11,22 +11,20 @@ import org.http4k.routing.bind
 import org.http4k.routing.routes
 
 
-class UiHandler(hub: UiHub) : HttpHandler {
+class UiHandler(val hub: UiHub) : HttpHandler {
 
-  val routes = routes(
-        "/" bind Method.GET to { _ ->
-          Response(OK).body(landingPageHtml())
-        },
-        "/submit" bind Method.POST to { req ->
+    val routes = routes(
+        "/" bind Method.GET to {  Response(OK).body(landingPageHtml()) },
+        "/submit" bind Method.POST to ::showResult
+    )
 
-          val text = req.form("words").orEmpty()
-
-          val wordNo = hub.countWords(text)
-          Response(OK).body(showResultHtml(wordNo))
+    private fun showResult(req: Request) =
+        req.form("words").orEmpty().let { text ->
+            val wordNo = hub.countWords(text)
+            Response(OK).body(showResultHtml(wordNo))
         }
-  )
 
-  override fun invoke(req: Request): Response = routes(req)
+    override fun invoke(req: Request): Response = routes(req)
 
 }
 
@@ -55,11 +53,6 @@ private fun landingPageHtml(): String = """
 
 </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
 
@@ -82,7 +75,11 @@ fun showResultHtml(res: Int): String = """
   </head>
   <body>
 
-    <h1>The number of words is $res</h1>
+    <div class="container">
+        <h2>The number of words is $res</h2>
+    
+        <p><a href="/">try another text</a></p>
+    </div>
   </body>
   </html>
 """.trimIndent()
