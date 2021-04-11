@@ -5,7 +5,6 @@ import com.ubertob.h4kcluster.testing.UserActor
 import com.ubertob.h4kcluster.testing.allInterpreters
 import com.ubertob.pesticide.core.DDT
 import com.ubertob.pesticide.core.DomainDrivenTest
-import java.time.LocalDate
 
 class CountWordsDDT : DomainDrivenTest<CountWordsInterpreter>(allInterpreters) {
 
@@ -20,7 +19,8 @@ class CountWordsDDT : DomainDrivenTest<CountWordsInterpreter>(allInterpreters) {
         withoutSetting atRise play(
             wilmaTheWriter.`can insert the text`(wilmaNovel),
             wilmaTheWriter.`verify that the number of words is $`(7)
-        ).wip(LocalDate.of(2021, 3, 1), "Working on it!")
+        )
+            //.wip(LocalDate.of(2021, 3, 1), "Working on it!")
     }
 
 

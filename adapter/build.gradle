@@ -5,11 +5,14 @@ plugins {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
 
+    implementation project(":domain")
     implementation "org.http4k:http4k-core:${http4kVersion}"
     implementation "org.http4k:http4k-client-okhttp:${http4kVersion}"
     implementation "org.http4k:http4k-server-undertow:${http4kVersion}"
 
-    implementation project(":domain")
+    implementation "com.ubertob.kondor:kondor-core:${kondorVersion}"
+
+    testImplementation "com.ubertob.kondor:kondor-tools:${kondorVersion}"
 
 }
 

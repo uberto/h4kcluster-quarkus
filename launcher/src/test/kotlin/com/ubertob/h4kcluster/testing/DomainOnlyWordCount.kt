@@ -20,8 +20,6 @@ class DomainOnlyWordCount: CountWordsInterpreter {
     private val sumNumbersHub = SumNumbersHub()
     private val uiHub = UiHub(wordCountHub::countWords, sumNumbersHub::sum)
 
-
-
-    override fun getTotalOfWords(text: String) = TODO("finish me")
+    override fun getTotalOfWords(text: String) = uiHub.countWords(text)
 
 }
