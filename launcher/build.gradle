@@ -20,12 +20,12 @@ dependencies {
 
 
     testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation "io.strikt:strikt-core:$striktVersion"
     testImplementation "com.ubertob.pesticide:pesticide-core:${pesticideVersion}"
     testImplementation "org.http4k:http4k-core:${http4kVersion}"
     testImplementation "org.http4k:http4k-server-undertow:${http4kVersion}"
     testImplementation "org.http4k:http4k-server-jetty:${http4kVersion}"
     testImplementation "org.http4k:http4k-client-apache:${http4kVersion}"
-    testImplementation "io.strikt:strikt-core:$striktVersion"
 
 
 

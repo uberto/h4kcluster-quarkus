@@ -12,6 +12,9 @@ dependencies {
 
     implementation "com.ubertob.kondor:kondor-core:${kondorVersion}"
 
+    testRuntime "org.junit.platform:junit-platform-launcher:${junitLauncherVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "io.strikt:strikt-core:$striktVersion"
     testImplementation "com.ubertob.kondor:kondor-tools:${kondorVersion}"
 
 }
