@@ -1,5 +1,6 @@
 import com.ubertob.h4kcluster.domain.CountWordsRequest
 import com.ubertob.kondor.json.*
+import com.ubertob.kondor.json.jsonnode.JsonNodeObject
 
 object JCountWordsRequest : JAny<CountWordsRequest>() {
     private val id by num(CountWordsRequest::id)
@@ -10,7 +11,7 @@ object JCountWordsRequest : JAny<CountWordsRequest>() {
 
     private val user by str(CountWordsRequest::user)
 
-    public override fun JsonNodeObject.deserializeOrThrow(): CountWordsRequest =
+    override fun JsonNodeObject.deserializeOrThrow(): CountWordsRequest =
         CountWordsRequest(
             id = +id,
             lines = +lines,

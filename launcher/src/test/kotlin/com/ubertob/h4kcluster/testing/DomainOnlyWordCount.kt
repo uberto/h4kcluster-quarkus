@@ -8,7 +8,7 @@ import com.ubertob.pesticide.core.DomainOnly
 import com.ubertob.pesticide.core.DomainSetUp
 import com.ubertob.pesticide.core.Ready
 
-class DomainOnlyWordCount: CountWordsInterpreter {
+class DomainOnlyWordCount: CountWordsActions {
 
     override val protocol: DdtProtocol
         get() = DomainOnly

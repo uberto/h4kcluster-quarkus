@@ -9,7 +9,7 @@ import org.http4k.core.body.form
 import org.http4k.server.Jetty
 import org.http4k.server.asServer
 
-class HttpWordCount(val host: String, val port: Int) : CountWordsInterpreter {
+class HttpWordCount(val host: String, val port: Int) : CountWordsActions {
     override val protocol: DdtProtocol
         get() = Http("$host:$port")
 

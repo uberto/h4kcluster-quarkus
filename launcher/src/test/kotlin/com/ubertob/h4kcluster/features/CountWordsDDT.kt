@@ -1,12 +1,12 @@
 package com.ubertob.h4kcluster.features
 
-import com.ubertob.h4kcluster.testing.CountWordsInterpreter
+import com.ubertob.h4kcluster.testing.CountWordsActions
 import com.ubertob.h4kcluster.testing.UserActor
 import com.ubertob.h4kcluster.testing.allInterpreters
 import com.ubertob.pesticide.core.DDT
 import com.ubertob.pesticide.core.DomainDrivenTest
 
-class CountWordsDDT : DomainDrivenTest<CountWordsInterpreter>(allInterpreters) {
+class CountWordsDDT : DomainDrivenTest<CountWordsActions>(allInterpreters) {
 
     val wilmaTheWriter by NamedActor(::UserActor)
     val tomTheTwitter by NamedActor(::UserActor)
