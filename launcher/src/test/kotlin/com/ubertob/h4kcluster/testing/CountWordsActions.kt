@@ -8,7 +8,7 @@ interface CountWordsActions: DomainActions<DdtProtocol> {
     fun getTotalOfWords(text: String): Int
 }
 
-val allInterpreters = setOf(
+val allActions = setOf(
     DomainOnlyWordCount(),
     HttpWordCount("localhost", 8082)
 )

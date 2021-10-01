@@ -6,6 +6,7 @@ import org.http4k.client.ApacheClient
 import org.http4k.core.Method
 import org.http4k.core.Request
 import org.http4k.core.body.form
+import org.http4k.server.Http4kServer
 import org.http4k.server.Jetty
 import org.http4k.server.asServer
 
@@ -13,39 +14,26 @@ class HttpWordCount(val host: String, val port: Int) : CountWordsActions {
     override val protocol: DdtProtocol
         get() = Http("$host:$port")
 
+    val client = ApacheClient()
 
-    var started = false
+    var server: Http4kServer? = null
 
     override fun prepare(): DomainSetUp = try {
-        if (host == "localhost" && !started) {
-            started = true
 
-            val server = LocalAppsHandler()
-                .asServer(Jetty(port))
-                .start()
-                .also { println("Started DDT http on $port") }
+        server = LocalAppsHandler()
+            .asServer(Jetty(port))
+            .start()
+            .also { println("Started DDT http on $port") }
 
-            registerShutdownHook {
-                server.stop()
-            }
-        }
         Ready
     } catch (t: Throwable) {
         NotReady(t.toString())
     }
 
-    private fun registerShutdownHook(hookToExecute: () -> Unit) {
-        Runtime.getRuntime().addShutdownHook(Thread {
-            val out = System.out
-            try {
-                hookToExecute()
-            } finally {
-                System.setOut(out)
-            }
-        })
-    }
-
-    val client = ApacheClient()
+    override fun tearDown(): DdtActions<DdtProtocol> =
+        apply {
+            server?.stop()
+        }
 
     private fun uri(path: String) = "http://$host:$port/$path"
 

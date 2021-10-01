@@ -18,8 +18,6 @@ dependencies {
     implementation "org.http4k:http4k-core:${http4kVersion}"
     implementation "io.quarkus:quarkus-undertow:${quarkusPlatformVersion}"
 
-    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation "io.strikt:strikt-core:$striktVersion"
     testImplementation "com.ubertob.pesticide:pesticide-core:${pesticideVersion}"
@@ -27,8 +25,6 @@ dependencies {
     testImplementation "org.http4k:http4k-server-undertow:${http4kVersion}"
     testImplementation "org.http4k:http4k-server-jetty:${http4kVersion}"
     testImplementation "org.http4k:http4k-client-apache:${http4kVersion}"
-
-
 
 }
 
