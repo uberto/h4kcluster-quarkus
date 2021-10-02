@@ -8,7 +8,7 @@ import org.http4k.core.Status
 class WordCounterClient(val handler: HttpHandler) : (String) -> Int {
   override fun invoke(text: String): Int {
 
-    val req = Request(Method.GET, WordCounterRoutes.count).body(text)
+    val req = Request(Method.POST, WordCounterRoutes.count).body(text)
 
     val resp = handler(req)
 
