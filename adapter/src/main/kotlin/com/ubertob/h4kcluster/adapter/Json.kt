@@ -19,23 +19,3 @@ object JCountWordsRequest : JAny<CountWordsRequest>() {
             user = +user
         )
 }
-
-/*
-public object JCountWordsRequest : JAny<CountWordsRequest> {
-  private val id: String = str(CountWordsRequest::id)
-
-  private val lines: String = str(CountWordsRequest::lines)
-
-  private val useDictionary: String = str(CountWordsRequest::useDictionary)
-
-  private val user: String = str(CountWordsRequest::user)
-
-  public override fun JsonNodeObject.deserializeOrThrow(): CountWordsRequest =
-      CountWordsRequest(
-        id = +id,
-        lines = +lines,
-        useDictionary = +useDictionary,
-        user = +user
-      )
-}
- */

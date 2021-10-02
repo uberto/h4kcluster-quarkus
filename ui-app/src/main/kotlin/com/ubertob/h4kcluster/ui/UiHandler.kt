@@ -1,5 +1,6 @@
 package com.ubertob.h4kcluster.ui
 
+import com.ubertob.h4kcluster.adapter.toOkResponse
 import com.ubertob.h4kcluster.domain.UiHub
 import org.http4k.core.HttpHandler
 import org.http4k.core.Method
@@ -19,10 +20,11 @@ class UiHandler(val hub: UiHub) : HttpHandler {
     )
 
     private fun showResult(req: Request) =
-        req.form("words").orEmpty().let { text ->
-            val wordNo = hub.countWords(text)
-            Response(OK).body(showResultHtml(wordNo))
-        }
+        req.form("words")
+            .orEmpty()
+            .let(hub::countWords)
+            .let(::showResultHtml)
+            .let(::toOkResponse)
 
     override fun invoke(req: Request): Response = routes(req)
 

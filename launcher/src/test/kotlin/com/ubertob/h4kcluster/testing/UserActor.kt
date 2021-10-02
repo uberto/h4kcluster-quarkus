@@ -7,7 +7,6 @@ data class UserActor(override val name: String) : DdtActorWithContext<CountWords
     fun `verify that the number of words is $`(expectedWords: Int) = step(expectedWords) { ctx ->
         val text = ctx.get()
 
-
         TODO("finish me")
     }
 
